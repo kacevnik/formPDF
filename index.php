@@ -2,7 +2,7 @@
 <html lang="ru">
 <html>
 <head>
-    <title>Главная DOLOTEX</title>
+    <title>PDF from FORM</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
@@ -20,7 +20,16 @@
 </head>
 <body>
     <div class="container">
-        <h1>Заполните форму</h1>
+        <div class="row">
+            <form action="" class="form_pdf" method="post" name="form_pdf">
+                <h2>Заполните Форму</h2>
+                <div class="sub_title">для генерации PDF</div>
+                <input type="text" name="name_company" class="input input_text" placeholder="Название компании">
+                <input type="text" name="inn" class="input input_text" placeholder="ИНН">
+                <input type="text" name="kpp" class="input input_text" placeholder="КПП">
+                <input type="text" name="ogrn" class="input input_text" placeholder="ОГРН">
+            </form>
+        </div>
     </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
