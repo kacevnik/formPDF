@@ -24,10 +24,23 @@
             <form action="" class="form_pdf" method="post" name="form_pdf">
                 <h2>Заполните Форму</h2>
                 <div class="sub_title">для генерации PDF</div>
-                <input type="text" name="name_company" class="input input_text" placeholder="Название компании">
-                <input type="text" name="inn" class="input input_text" placeholder="ИНН">
-                <input type="text" name="kpp" class="input input_text" placeholder="КПП">
-                <input type="text" name="ogrn" class="input input_text" placeholder="ОГРН">
+                <div class="form_wrap">
+                    <div class="col-md-6">
+                        <input type="text" name="name_company" class="input input_text" placeholder="Название компании" required="required">
+                        <input type="text" name="inn" class="input input_text" placeholder="ИНН" required="required">
+                        <input type="text" name="kpp" class="input input_text" placeholder="КПП" required="required">
+                        <input type="text" name="ogrn" class="input input_text" placeholder="ОГРН" required="required">
+                        <input type="text" name="fio" class="input input_text" placeholder="ФИО: Директор" required="required">
+                    </div>
+                    <div class="col-md-6">
+                        <textarea name="adress" class="input_text textarea" placeholder="Адресс" required="required"></textarea>
+                        <input type="text" name="phone" class="input input_text" placeholder="Телефон" required="required">
+                        <input type="text" name="email" class="input input_text" placeholder="Эл. почта" required="required">
+                        <input type="submit" name="submit" value="Сгенерировать PDF" class="button">
+                    </div>
+                </div>
+                <div class="bottom_text">Внимание! Все поля должны быть заполнены.</div>
+                <span class="info">created by <a href="https://www.fl.ru/users/kacevnik/">Dmitry Kovalev</a></span>
             </form>
         </div>
     </div>
