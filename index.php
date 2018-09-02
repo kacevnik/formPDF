@@ -26,11 +26,11 @@
                 <div class="sub_title">для генерации PDF</div>
                 <div class="form_wrap">
                     <div class="col-md-6">
-                        <input type="text" name="name_company" class="input input_text" placeholder="Название компании" required="required">
+                        <input type="text" name="company" class="input input_text" placeholder="Название компании" required="required">
                         <input type="text" name="inn" class="input input_text" placeholder="ИНН" required="required">
                         <input type="text" name="kpp" class="input input_text" placeholder="КПП" required="required">
                         <input type="text" name="ogrn" class="input input_text" placeholder="ОГРН" required="required">
-                        <input type="text" name="fio" class="input input_text" placeholder="ФИО: Директор" required="required">
+                        <input type="text" name="name" class="input input_text" placeholder="ФИО: Директор" required="required">
                     </div>
                     <div class="col-md-6">
                         <textarea name="adress" class="input_text textarea" placeholder="Адресс" required="required"></textarea>
