@@ -1,6 +1,9 @@
 <?php
 
- session_start();
+    session_start();
+
+    require_once 'dompdf/autoload.inc.php';
+    use Dompdf\Dompdf;
 
     if($_POST['submit']){
         $session = array();
@@ -22,7 +25,34 @@
             exit();
         }
 
-        require_once 'dompdf/autoload.inc.php';
+        $html = '<style>body{font-family: "DejaVu Serif"; text-align: center; border: 1px solid #000000; position: relative;}</style>';
+        $html.= '<style>body:after{content: ""; position: absolute; top: 0; left: 0; bottom: 0; right: 0; border: 2px solid #000000; outline: 1px solid #ffffff;}</style>';
+        $html.= '<style>h1{font-size: 50px; font-family: "DejaVu Sans"; margin: 60px 0;}</style>';
+        $html.= '<style>.bank{ padding-bottom: 10px; margin-bottom: 10px; font-size: 24px;}</style>';
+        $html.= '<style>.bank i{border-bottom: 2px solid #000000;}</style>';
+        $html.= '<style>.line{height: 60px;}</style>';
+        $html.= '<style>.p{padding: 0 80px; font-size: 24px; margin: 0 0 0 0;}</style>';
+        $html.= '<h1>'.$company.'</h1>';
+        $html.= '<span class="bank"><b>ИНН: </b><i>'.$inn.'</i></span><br>';
+        $html.= '<span class="bank"><b>КПП: </b><i>'.$kpp.'</i></span><br>';
+        $html.= '<span class="bank"><b>ОГРН: </b><i>'.$ogrn.'</i></span>';
+        $html.= '<p class="line"> </p>';
+        $html.= '<p class="adres p"><b>Адрес: </b><i>'.$adres.'</i></p>';
+        $html.= '<p class="name p"><b>Ген. директор: </b><i>'.$name.'</i></p>';
+        $html.= '<p class="phone p"><b>Телефон: </b><i>'.$phone.'</i></p>';
+        $html.= '<p class="email p"><b>Эл. почта: </b><i>'.$email.'</i></p>';
+
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+        $dompdf->setPaper('A4', 'landscape');
+
+        $dompdf->render();
+
+        $dompdf->stream();
+
+
     }
 
 ?>
