@@ -127,6 +127,12 @@ h2 {
     right: 0;
 }
 
+.error{
+    font-style: italic;
+    padding: 0 0 15px 0;
+    color: #de6e6e;
+}
+
 .info a{
     color: #272727;
 }

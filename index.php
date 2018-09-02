@@ -1,3 +1,27 @@
+<?php
+
+ session_start();
+
+    if($_POST['submit']){
+        $error = "Заполните поля: ";
+        if($_POST['company']){$company = $_POST['company'];}else{$error.= "Название компании"; }
+        if($_POST['inn']){$inn = $_POST['inn'];}else{$error.= ", ИНН"; }
+        if($_POST['kpp']){$kpp = $_POST['kpp'];}else{$error.= ", КПП"; }
+        if($_POST['ogrn']){$ogrn = $_POST['ogrn'];}else{$error.= ", ОГРН"; }
+        if($_POST['name']){$name = $_POST['name'];}else{$error.= ", Директор: ФИО"; }
+        if($_POST['adress']){$adress = $_POST['adress'];}else{$error.= ", Адрес"; }
+        if($_POST['phone']){$phone = $_POST['phone'];}else{$error.= ", Телефон"; }
+        if($_POST['email']){$email = $_POST['email'];}else{$error.= ", Эл. почта"; }
+
+        if($error != "Заполните поля: ") {
+            $_SESSION['error'] = $error;
+            header("Location: index.php");
+            exit();
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <html>
@@ -24,16 +48,17 @@
             <form action="" class="form_pdf" method="post" name="form_pdf">
                 <h2>Заполните Форму</h2>
                 <div class="sub_title">для генерации PDF</div>
+                <div class="error"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
                 <div class="form_wrap">
                     <div class="col-md-6">
-                        <input type="text" name="company" class="input input_text" placeholder="Название компании" required="required">
-                        <input type="text" name="inn" class="input input_text" placeholder="ИНН" required="required">
-                        <input type="text" name="kpp" class="input input_text" placeholder="КПП" required="required">
+                        <input type="text" name="company" class="input input_text" placeholder="Название компании">
+                        <input type="text" name="inn" class="input input_text" placeholder="ИНН">
+                        <input type="text" name="kpp" class="input input_text" placeholder="КПП">
                         <input type="text" name="ogrn" class="input input_text" placeholder="ОГРН" required="required">
                         <input type="text" name="name" class="input input_text" placeholder="ФИО: Директор" required="required">
                     </div>
                     <div class="col-md-6">
-                        <textarea name="adress" class="input_text textarea" placeholder="Адресс" required="required"></textarea>
+                        <textarea name="adress" class="input_text textarea" placeholder="Адрес" required="required"></textarea>
                         <input type="text" name="phone" class="input input_text" placeholder="Телефон" required="required">
                         <input type="text" name="email" class="input input_text" placeholder="Эл. почта" required="required">
                         <input type="submit" name="submit" value="Сгенерировать PDF" class="button">
