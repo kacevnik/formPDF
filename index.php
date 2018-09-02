@@ -3,17 +3,20 @@
  session_start();
 
     if($_POST['submit']){
+        $session = array();
+
         $error = "Заполните поля: ";
-        if($_POST['company']){$company = $_POST['company'];}else{$error.= "Название компании"; }
-        if($_POST['inn']){$inn = $_POST['inn'];}else{$error.= ", ИНН"; }
-        if($_POST['kpp']){$kpp = $_POST['kpp'];}else{$error.= ", КПП"; }
-        if($_POST['ogrn']){$ogrn = $_POST['ogrn'];}else{$error.= ", ОГРН"; }
-        if($_POST['name']){$name = $_POST['name'];}else{$error.= ", Директор: ФИО"; }
-        if($_POST['adress']){$adress = $_POST['adress'];}else{$error.= ", Адрес"; }
-        if($_POST['phone']){$phone = $_POST['phone'];}else{$error.= ", Телефон"; }
-        if($_POST['email']){$email = $_POST['email'];}else{$error.= ", Эл. почта"; }
+        if($_POST['company']){$company = $_POST['company']; $session['company'] = $company;}else{$error.= "Название компании"; }
+        if($_POST['inn']){$inn = $_POST['inn']; $session['inn'] = $inn; }else{$error.= ", ИНН"; }
+        if($_POST['kpp']){$kpp = $_POST['kpp']; $session['kpp'] = $kpp; }else{$error.= ", КПП"; }
+        if($_POST['ogrn']){$ogrn = $_POST['ogrn']; $session['ogrn'] = $ogrn; }else{$error.= ", ОГРН"; }
+        if($_POST['name']){$name = $_POST['name']; $session['name'] = $name; }else{$error.= ", Директор: ФИО"; }
+        if($_POST['adres']){$adres = $_POST['adres']; $session['adres'] = $adres; }else{$error.= ", Адрес"; }
+        if($_POST['phone']){$phone = $_POST['phone']; $session['phone'] = $phone; }else{$error.= ", Телефон"; }
+        if($_POST['email']){$email = $_POST['email']; $session['email'] = $email; }else{$error.= ", Эл. почта"; }
 
         if($error != "Заполните поля: ") {
+            $_SESSION['value'] = $session;
             $_SESSION['error'] = $error;
             header("Location: index.php");
             exit();
@@ -51,19 +54,20 @@
                 <div class="error"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
                 <div class="form_wrap">
                     <div class="col-md-6">
-                        <input type="text" name="company" class="input input_text" placeholder="Название компании">
-                        <input type="text" name="inn" class="input input_text" placeholder="ИНН">
-                        <input type="text" name="kpp" class="input input_text" placeholder="КПП">
-                        <input type="text" name="ogrn" class="input input_text" placeholder="ОГРН" required="required">
-                        <input type="text" name="name" class="input input_text" placeholder="ФИО: Директор" required="required">
+                        <input type="text" name="company" value="<?php if($_SESSION['value']['company']){echo $_SESSION['value']['company'];} ?>" class="input input_text" placeholder="Название компании" required="required">
+                        <input type="text" name="inn" value="<?php if($_SESSION['value']['inn']){echo $_SESSION['value']['inn'];} ?>" class="input input_text" placeholder="ИНН" required="required">
+                        <input type="text" name="kpp" value="<?php if($_SESSION['value']['kpp']){echo $_SESSION['value']['kpp'];} ?>" class="input input_text" placeholder="КПП" required="required">
+                        <input type="text" name="ogrn" value="<?php if($_SESSION['value']['ogrn']){echo $_SESSION['value']['ogrn'];} ?>" class="input input_text" placeholder="ОГРН" required="required">
+                        <input type="text" name="name" value="<?php if($_SESSION['value']['name']){echo $_SESSION['value']['name'];} ?>" class="input input_text" placeholder="ФИО: Директор" required="required">
                     </div>
                     <div class="col-md-6">
-                        <textarea name="adress" class="input_text textarea" placeholder="Адрес" required="required"></textarea>
-                        <input type="text" name="phone" class="input input_text" placeholder="Телефон" required="required">
-                        <input type="text" name="email" class="input input_text" placeholder="Эл. почта" required="required">
+                        <textarea name="adres" class="input_text textarea" placeholder="Адрес" required="required"><?php if($_SESSION['value']['adres']){echo $_SESSION['value']['adres'];} ?></textarea>
+                        <input type="text" name="phone" value="<?php if($_SESSION['value']['phone']){echo $_SESSION['value']['phone'];} ?>" class="input input_text" placeholder="Телефон" required="required">
+                        <input type="text" name="email" value="<?php if($_SESSION['value']['email']){echo $_SESSION['value']['email'];} ?>" class="input input_text" placeholder="Эл. почта" required="required">
                         <input type="submit" name="submit" value="Сгенерировать PDF" class="button">
                     </div>
                 </div>
+                <?php unset($_SESSION['value']); ?>
                 <div class="bottom_text">Внимание! Все поля должны быть заполнены.</div>
                 <span class="info">created by <a href="https://www.fl.ru/users/kacevnik/">Dmitry Kovalev</a></span>
             </form>
